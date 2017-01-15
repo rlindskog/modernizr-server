@@ -10,14 +10,24 @@ Express middleware that exposes client modernizr data to the server.
     const express = require('express')
     const cookieParser = require('cookie-parser')
     const modernizrServer = require('modernizr-server')
-    
+
     const app = express()
-    
+
     app.use(cookieParser())
     app.use(modernizrServer({
-      // options
+      config: {
+        "minify": true,
+        "options": [
+          "hasEvent",
+          "html5shiv"
+        ],
+        "feature-detects": [
+          "canvas",
+          "webanimations"
+        ]
+      },
     }))
-    
+
     app.get('/', function(req, res) {
       let Modernizr = req.cookies.modernizr
       if (!Modernizr.canvas) {
@@ -28,17 +38,17 @@ Express middleware that exposes client modernizr data to the server.
         res.send('Yay, you  support canvas! :)')
       }
     })
-      
-      app.listen(8000, function(err) {
-        if (err) throw err
-        console.log('listening at http://localhost:8000/')
-      })
+
+    app.listen(8000, function(err) {
+      if (err) throw err
+      console.log('listening at http://localhost:8000/')
+    })
 
 # Using the same modernizr on the client
 Add this to the beginning of your javascript to gain access to modernizr.
 
 	  var Modernizr = document.cookies.modernizr
-  
+
 # Options
   modernizr-server supports options objects as a parameter. (See the example above).
 
@@ -48,7 +58,7 @@ Default: 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.j
 If no build options are given ('config' or 'build'), modernizr-server will use a [CDN](https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js) to load modernizr.  You can choose to use your own CDN as well.
 
     cdn: 'https://YourCDN.com/modernizr/...'
-   
+
 **config**: Object
 
 Set the config option to create custom builds per client.  **NOTE**: this create the same build every time someone new makes a request.  This can potentially add more dynamics.  If you don't need this, Use the *build* option below.
