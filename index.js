@@ -1,10 +1,11 @@
 const modernizr = require('modernizr')
 
-function modernizrExpress (options) {
+function modernizrExpress (options={}) {
   return (req, res, next) => {
     let cookieName = options.cookieName || 'modernizr' // default to 'modernizr'
+
     if (req.cookies === undefined) {
-      throw (Error(`Can't find 'modernizr' of undefined.
+      throw (Error(`Cannot read property 'cookieName' of undefined
 
       Make sure you have cookie-parser installed, and is used before modernizr-server.
 
