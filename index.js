@@ -28,6 +28,7 @@ function modernizrExpress (options={}) {
     ))
     }
     if (req.cookies[cookieName]) {
+      req.cookies[cookieName] = JSON.parse(req.cookies[cookieName])
       // cookie already exists, continue
       next()
     } else {
