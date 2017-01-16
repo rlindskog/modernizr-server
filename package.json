@@ -1,6 +1,6 @@
 {
   "name": "modernizr-server",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Express middleware that exposes client modernizr data to the server.",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "author": "Ryan Lindskog",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "modernizr": "^3.3.1"
   },
   "devDependencies": {
