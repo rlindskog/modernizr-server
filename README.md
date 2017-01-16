@@ -11,6 +11,7 @@ modernizr-server supports an options object as a parameter. (See an example belo
 **storageMethod**: String
 
 Default: 'cookie'
+
 If you want to use a session, set this option as 'session'.  See 'Example (session)' below.  modernizr-server by default stores the modernizr information as a cookie.  This is good if you want to access the same modernizr on the client; however, modernizr builds can be pretty big.  If you want to use this method, we recommend that you use a smaller build. We also support 'session' as a storage method.  This is the preferred method. 
 
 **cdn**: String
