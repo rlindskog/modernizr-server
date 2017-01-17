@@ -26,7 +26,7 @@ function handleCookie(req, res, next, options) {
     let expires = options.expires || 0 // default to expires=Session
     if (options.build) {
       let build = options.build
-      let scriptToSend = modernizrJsBuild(build, storageName, expires, setModernizrCookieJs)
+      let scriptToSend = modernizrJsBuild(build, storageName, setModernizrCookieJs, expires)
       res.send(scriptToSend)
     } else if (options.config) {
       // use the config and make a build...

@@ -1,6 +1,6 @@
 {
   "name": "modernizr-server",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Express middleware that exposes client modernizr data to the server.",
   "main": "index.js",
   "scripts": {
