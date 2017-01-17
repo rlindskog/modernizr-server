@@ -5,17 +5,41 @@ Express middleware that exposes client modernizr data to the server.
 
     npm install --save modernizr-server
 
+# Simple Example
+    // setup
+    npm install --save modernizr-server express cookie-praser
+    
+    // server.js
+    const express = require('express')
+    const cookieParser = require('cookie-parser')
+    const modernizrServer = require('modernizr-server')
+    
+    const app = express()
+    
+    app.use(cookieParser())
+    app.use(modernizrServer())
+    
+    app.get('/', function(req, res) {
+      let Modernizr = req.cookies.modernizr
+      res.send(Modernizr)
+    }
+    app.listen(8000, function(err) {
+      console.log('listening at http://localhost:8000/')
+    })
+
 # Options
 modernizr-server supports an options object as a parameter. (See an example below).
 
 **storageMethod**: String
 
 Default: 'cookie'
+
 If you want to use a session, set this option as 'session'.  See 'Example (session)' below.  modernizr-server by default stores the modernizr information as a cookie.  This is good if you want to access the same modernizr on the client; however, modernizr builds can be pretty big.  If you want to use this method, we recommend that you use a smaller build. We also support 'session' as a storage method.  This is the preferred method. 
 
 **cdn**: String
 
 Default: 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'
+
 If no build options are given ('config' or 'build'), modernizr-server will use a [CDN](https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js) to load modernizr.  You can choose to use your own CDN as well.
 
     cdn: 'https://YourCDN.com/modernizr/...'
@@ -49,6 +73,7 @@ You can make a custom modernizr build [on their website.](https://modernizr.com/
 **storageName**: String
 
 Default: 'modernizr'
+
 This will change the name of the cookie or session variable that modernizr-server sets.
 
 **expires**: Number
